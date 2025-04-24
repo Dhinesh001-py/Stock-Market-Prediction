@@ -8,7 +8,7 @@ import plotly.graph_objs as go
 from dash import Dash, dcc, html, dash_table
 
 # Step 1: Data collection and preprocessing
-stock_data = yf.download('AAPL', start='2015-01-01', end='2023-01-01', auto_adjust=True)
+stock_data = yf.download('AAPL', start='2023-01-01', end='2025-01-01', auto_adjust=True)
 stock_data.reset_index(inplace=True)
 stock_data.ffill(inplace=True)  # <- fixed future warning
 
@@ -48,7 +48,7 @@ graph.update_layout(title='AAPL Stock Price Prediction',
                     yaxis_title='Stock Price (USD)')
 
 # Step 5: Create Dash app
-app = Dash(_name_)
+app = Dash(__name__)
 
 app.layout = html.Div(children=[
     html.H1("AAPL Stock Price Prediction Dashboard"),
@@ -64,5 +64,5 @@ app.layout = html.Div(children=[
 ])
 
 # Step 6: Run the app
-if _name_ == '_main_':
+if __name__ == '__main__':
     app.run(debug=True)  # <- updated line
